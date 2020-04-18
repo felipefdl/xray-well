@@ -12,6 +12,9 @@
     "allowSyntheticDefaultImports": true,
     "lib": [
       "ES2017"
-    ]
-  }
+    ],
+  },
+  "include": [
+    "src/**/*"
+  ],
 }

@@ -1,5 +1,6 @@
 nodemon.json
 examples/
+__tests__/
 .editorconfig
 .eslintignore
 .prettierrc
