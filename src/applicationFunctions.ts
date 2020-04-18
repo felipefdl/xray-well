@@ -1,5 +1,3 @@
-import * as daemon from "./xray";
-
 function addAnnotationFunction(message: Message) {
   return (key: string, value: string | number | boolean) => {
     message.annotations = {
