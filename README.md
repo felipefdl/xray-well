@@ -1,4 +1,4 @@
-# AWS X-Ray Well - A Unofficial SDK for Node.js
+# AWS X-Ray Well - An Unofficial SDK for Node.js
 > Simple way to use AWS X-Ray. This is a jerry-rig free X-Ray SDK.
 
 ## Why?
