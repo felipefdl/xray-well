@@ -8,3 +8,4 @@ __tests__/
 *.tgz
 *.local.*
 .DS_Store
+jest.config.js
