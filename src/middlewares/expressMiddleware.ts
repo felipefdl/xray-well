@@ -8,7 +8,9 @@ const defaultConfig: MiddlewareConfig = {
   ignoreStatusCodeFault: [],
 };
 
-function expressXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
+function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
+  const config = { ...defaultConfig, ...middlewareConfig };
+
   return (req: any, res: any, next: () => void) => {
     const segment = createSegment(config.name);
 

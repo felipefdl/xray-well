@@ -8,7 +8,9 @@ const defaultConfig: MiddlewareConfig = {
   ignoreStatusCodeFault: [],
 };
 
-function koaXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
+function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
+  const config = { ...defaultConfig, ...middlewareConfig };
+
   return async (ctx: any, next: () => Promise<void>) => {
     const segment = createSegment(config.name);
 

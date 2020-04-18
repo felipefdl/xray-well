@@ -2,7 +2,7 @@ const xrayWell = require("../../");
 const express = require("express");
 const app = express();
 
-app.use(xrayWell.middleware.express());
+app.use(xrayWell.middleware.express({ name: "express-test" }));
 
 app.get("/", (req, res) => {
   req.xray.setUser("user@email.com");
