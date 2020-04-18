@@ -5,7 +5,7 @@
 
 The Official AWS SDK X-Ray wraps the native node modules to try to make it like magic, but it's a bad idea when trying to use it in complex systems. I tried to use the official SDK for more than 5 times in the past and it always not work to me, sometimes the problem is because I use it in a framework not supported as Koa, some times even on express (supported framework by AWS SDK) it not work well.
 
-So, I created this lib well done, this lib will never auto attach on your native modules, it does not work like magic, but you can do your magic using it.
+So, I created this lib well done, this lib will never auto attach on Node.js native modules, it does not work like magic, but you can do your magic using it.
 
 ## How to install it?
 

@@ -17,10 +17,7 @@
     "express",
     "middleware"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/felipefdl/xray-well.git"
-  },
+  "repository": "felipefdl/xray-well",
   "scripts": {
     "prepublishOnly": "jest",
     "prepare": "tsc",
