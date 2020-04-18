@@ -1,0 +1,9 @@
+nodemon.json
+examples/
+.editorconfig
+.eslintignore
+.prettierrc
+.eslintrc.js
+*.tgz
+*.local.*
+.DS_Store

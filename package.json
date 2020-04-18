@@ -1,0 +1,38 @@
+{
+  "name": "xray-well",
+  "version": "0.1.0",
+  "description": "XRay Well is a Unofficial AWS X-Ray SDK",
+  "main": "./out/index.js",
+  "types": "./out/index.d.ts",
+  "engines": {
+    "node": ">= 12.0"
+  },
+  "scripts": {
+    "prepare": "tsc",
+    "build": "tsc"
+  },
+  "keywords": [
+    "aws",
+    "x-ray",
+    "xray",
+    "sdk",
+    "express",
+    "middleware"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felipefdl/xray-well.git"
+  },
+  "author": "Felipe Lima",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "13.11.1",
+    "@typescript-eslint/eslint-plugin": "2.28.0",
+    "@typescript-eslint/parser": "2.28.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-prettier": "3.1.3",
+    "prettier": "2.0.4",
+    "typescript": "3.8.3"
+  }
+}
