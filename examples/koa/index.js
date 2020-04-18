@@ -2,7 +2,9 @@ const xrayWell = require("../../");
 const Koa = require("koa");
 const app = new Koa();
 
-app.use(xrayWell.middleware.koa());
+xrayWell.activeUptime();
+
+app.use(xrayWell.middleware.koa({ name: "api.myapi.com" }));
 
 app.use((ctx) => {
   ctx.xray.setUser("user@email.com");

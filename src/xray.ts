@@ -2,6 +2,7 @@ const dgram = require("dgram");
 const crypto = require("crypto");
 const fs = require("fs");
 const packageJSON = require("../package.json");
+const ms = require("ms");
 const client = dgram.createSocket("udp4");
 let softwarePackageJson: { version: string; name: string } = null;
 
@@ -25,6 +26,11 @@ const awsField: Metadata = {
     sdk: "X-Ray Well",
     version: packageJSON.version,
   },
+  system: {
+    nodejs: process.version,
+    platform: process.platform,
+    pid: process.pid,
+  },
 };
 
 if (softwarePackageJson) {
@@ -32,15 +38,14 @@ if (softwarePackageJson) {
     name: softwarePackageJson.name,
     version: softwarePackageJson.version,
   };
-  _config.name = softwarePackageJson.name;
 }
 
-function _handleMessage(message: DaemonMessage): Buffer {
-  return Buffer.from(`${HEADER}\n${JSON.stringify(message)}`);
+function _handleMessage(segment: DaemonSegment): Buffer {
+  return Buffer.from(`${HEADER}\n${JSON.stringify(segment)}`);
 }
 
-function sendData(message: Message): void {
-  const daemonMessage = { ...message, name: _config.name, aws: awsField } as DaemonMessage;
+function sendData(segment: Segment): void {
+  const daemonMessage = { name: _config.name, ...segment, aws: awsField } as DaemonSegment;
 
   client.send(_handleMessage(daemonMessage), _config.port, _config.server, (err) => {
     if (_config.debug) {
@@ -69,4 +74,16 @@ function setConfig(config: Config) {
   _config = { ..._config, ...config };
 }
 
-export { sendData, generateID, generateTraceID, generateTime, setConfig, _handleMessage };
+let uptime;
+function activeUptime(active: boolean = true, secondsUpdate: number = 30) {
+  clearInterval(uptime);
+  delete awsField.system.uptime;
+  if (!active) return;
+
+  awsField.system.uptime = "--";
+  uptime = setInterval(() => {
+    awsField.system.uptime = ms(process.uptime() * 1000);
+  }, secondsUpdate * 1000);
+}
+
+export { sendData, generateID, generateTraceID, generateTime, setConfig, activeUptime, _handleMessage };

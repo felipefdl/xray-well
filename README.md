@@ -16,7 +16,7 @@ $ npm install xray-well --save
 > Set the configuration on main file of your application. You still need the AWS X-Ray Daemon
 ```javascript
 const xrayWell = require("xray-well");
-xrayWell.setConfig({ name: "my.awesome.domain.com", server: "localhost", port: 2000 });
+xrayWell.setConfig({ server: "localhost", port: 2000 });
 ```
 
 ## How to use on Express Framework?
@@ -26,9 +26,7 @@ const xrayWell = require("xray-well");
 const express  = require("express");
 const app      = express();
 
-xrayWell.setConfig({ name: "my.awesome.domain.com" }); // optional
-
-app.use(xrayWell.middleware.express()); // Add it before any another middleware
+app.use(xrayWell.middleware.express({ name: "my.awesome.domain.com" })); // Add it before any another middleware
 
 app.get("/", (req, res) => {
   req.xray.setUser("user@email.com");
@@ -52,9 +50,7 @@ const xrayWell = require("xray-well");
 const Koa      = require("koa");
 const app      = new Koa();
 
-xrayWell.setConfig({ name: "my.awesome.domain.com" }); // optional
-
-app.use(xrayWell.middleware.koa()); // Add it before any another middleware
+app.use(xrayWell.middleware.koa({ name: "my.awesome.domain.com" })); // Add it before any another middleware
 
 app.use((ctx) => {
   ctx.xray.setUser("user@email.com");
@@ -70,6 +66,13 @@ app.use((ctx) => {
 app.listen(3030, () => console.log("Listening at http://localhost:3030"));
 
 ```
+
+## TO-DO
+- [x] Create Koa and Express Framework;
+- [ ] Create an easy way to add SQL Segments;
+- [ ] Implement exceptions segments;
+- [ ] Create better documentation;
+- [ ] Improve unit tests;
 
 ## License
 

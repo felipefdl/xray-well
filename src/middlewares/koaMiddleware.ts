@@ -1,7 +1,8 @@
-import * as daemon from "../xray";
-import { addAnnotationFunction, addMetadataFunction, setUserFunction } from "../applicationFunctions";
+import { addAnnotationFunction, addMetadataFunction, setUserFunction } from "./_middlewareHelpers";
+import { createSegment, submitSegmentPart, submitSegment } from "../segment";
 
 const defaultConfig: MiddlewareConfig = {
+  name: "koa-middleware",
   throttleSeconds: 10,
   ignoreStatusCodeError: [],
   ignoreStatusCodeFault: [],
@@ -9,38 +10,31 @@ const defaultConfig: MiddlewareConfig = {
 
 function koaXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
   return async (ctx: any, next: () => Promise<void>) => {
-    const traceID = daemon.generateTraceID();
-    const requestID = daemon.generateID();
+    const segment = createSegment(config.name);
 
-    const message: Message = {
-      trace_id: traceID,
-      id: requestID,
-      start_time: daemon.generateTime(),
-      in_progress: true,
-      http: {
-        request: {
-          client_ip: ctx.ip,
-          url: ctx.path,
-          method: ctx.method,
-          x_forwarded_for: ctx.header["x-forwarded-for"],
-        },
+    segment.http = {
+      request: {
+        client_ip: ctx.ip,
+        url: ctx.path,
+        method: ctx.method,
+        x_forwarded_for: ctx.header["x-forwarded-for"],
       },
     };
 
-    daemon.sendData(message);
-    ctx.xray = { trace_id: traceID, parent_id: requestID };
-    ctx.xray.addAnnotation = addAnnotationFunction(message);
-    ctx.xray.addMetadata = addMetadataFunction(message);
-    ctx.xray.setUser = setUserFunction(message);
+    submitSegmentPart(segment);
+
+    ctx.xray = {};
+    ctx.xray.requestSegment = segment;
+    ctx.xray.addAnnotation = addAnnotationFunction(segment);
+    ctx.xray.addMetadata = addMetadataFunction(segment);
+    ctx.xray.setUser = setUserFunction(segment);
 
     await next();
 
-    const endMessage: Message = {
-      ...message,
-      end_time: daemon.generateTime(),
-      in_progress: false,
+    const endSegment: Segment = {
+      ...segment,
       http: {
-        ...message.http,
+        ...segment.http,
         response: {
           status: ctx.status,
           content_length: ctx.response.header["content-length"],
@@ -49,18 +43,18 @@ function koaXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
     };
 
     if (ctx.status >= 400 && ctx.status < 500 && !config.ignoreStatusCodeError.includes(ctx.status)) {
-      endMessage.error = true;
+      endSegment.error = true;
     }
 
     if (ctx.status >= 500 && ctx.status < 600 && !config.ignoreStatusCodeFault.includes(ctx.status)) {
-      endMessage.fault = true;
+      endSegment.fault = true;
     }
 
-    if (endMessage.end_time - message.start_time > config.throttleSeconds) {
-      endMessage.throttle = true;
+    if (endSegment.end_time - segment.start_time > config.throttleSeconds) {
+      endSegment.throttle = true;
     }
 
-    daemon.sendData(endMessage);
+    submitSegment(endSegment);
   };
 }
 

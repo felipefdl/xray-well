@@ -1,27 +1,27 @@
-function addAnnotationFunction(message: Message) {
+function addAnnotationFunction(segment: Segment) {
   return (key: string, value: string | number | boolean) => {
-    message.annotations = {
-      ...message.annotations,
+    segment.annotations = {
+      ...segment.annotations,
       [key]: value,
     };
   };
 }
 
-function addMetadataFunction(message: Message) {
+function addMetadataFunction(segment: Segment) {
   return (namespace: string, key: string, value: string | number | boolean) => {
-    message.metadata = {
-      ...message.metadata,
+    segment.metadata = {
+      ...segment.metadata,
       [namespace]: {
-        ...(message.metadata ? message.metadata[namespace] : undefined),
+        ...(segment.metadata ? segment.metadata[namespace] : undefined),
         [key]: value,
       },
     };
   };
 }
 
-function setUserFunction(message: Message) {
+function setUserFunction(segment: Segment) {
   return (user: string) => {
-    message.user = user;
+    segment.user = user;
   };
 }
 
