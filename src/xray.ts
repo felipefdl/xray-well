@@ -50,7 +50,6 @@ function sendData(message: Message): void {
         console.debug("[X-Ray] Data sent");
       }
     }
-    // client.close();
   });
 }
 
