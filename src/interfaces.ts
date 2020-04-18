@@ -17,7 +17,7 @@ interface Http {
 }
 
 interface TagValue {
-  [key: string]: string | number;
+  [key: string]: string | number | boolean;
 }
 
 interface Metadata {

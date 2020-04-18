@@ -32,6 +32,7 @@ if (softwarePackageJson) {
     name: softwarePackageJson.name,
     version: softwarePackageJson.version,
   };
+  _config.name = softwarePackageJson.name;
 }
 
 function _handleMessage(message: DaemonMessage): Buffer {

@@ -26,11 +26,18 @@ const xrayWell = require("xray-well");
 const express  = require("express");
 const app      = express();
 
-xrayWell.setConfig({ name: "my.awesome.domain.com" });
+xrayWell.setConfig({ name: "my.awesome.domain.com" }); // optional
 
 app.use(xrayWell.middleware.express()); // Add it before any another middleware
 
 app.get("/", (req, res) => {
+  req.xray.setUser("user@email.com");
+  req.xray.addAnnotation("user_id", "44232123");
+  req.xray.addAnnotation("company", "acme");
+  req.xray.addMetadata("myNamespace", "any", "value");
+  req.xray.addMetadata("myNamespace", "another", true);
+  req.xray.addMetadata("mySecondsNamespace", "foo", "bar");
+
   res.send("Hi AWS, I'm not using your SDK! =)");
 });
 
@@ -45,11 +52,18 @@ const xrayWell = require("xray-well");
 const Koa      = require("koa");
 const app      = new Koa();
 
-xrayWell.setConfig({ name: "my.awesome.domain.com" });
+xrayWell.setConfig({ name: "my.awesome.domain.com" }); // optional
 
 app.use(xrayWell.middleware.koa()); // Add it before any another middleware
 
 app.use((ctx) => {
+  ctx.xray.setUser("user@email.com");
+  ctx.xray.addAnnotation("user_id", "44232123");
+  ctx.xray.addAnnotation("company", "acme");
+  ctx.xray.addMetadata("myNamespace", "any", "value");
+  ctx.xray.addMetadata("myNamespace", "another", true);
+  ctx.xray.addMetadata("mySecondsNamespace", "foo", "bar");
+
   ctx.body = "Hi AWS, I'm not using your SDK! =)";
 });
 

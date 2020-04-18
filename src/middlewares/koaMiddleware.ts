@@ -1,4 +1,5 @@
 import * as daemon from "../xray";
+import { addAnnotationFunction, addMetadataFunction, setUserFunction } from "../applicationFunctions";
 
 const defaultConfig: MiddlewareConfig = {
   throttleSeconds: 10,
@@ -28,6 +29,9 @@ function koaXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
 
     daemon.sendData(message);
     ctx.xray = { trace_id: traceID, parent_id: requestID };
+    ctx.xray.addAnnotation = addAnnotationFunction(message);
+    ctx.xray.addMetadata = addMetadataFunction(message);
+    ctx.xray.setUser = setUserFunction(message);
 
     await next();
 

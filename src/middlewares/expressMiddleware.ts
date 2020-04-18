@@ -1,4 +1,5 @@
 import * as daemon from "../xray";
+import { addAnnotationFunction, addMetadataFunction, setUserFunction } from "../applicationFunctions";
 
 const defaultConfig: MiddlewareConfig = {
   throttleSeconds: 10,
@@ -25,6 +26,12 @@ function expressXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
         },
       },
     };
+
+    daemon.sendData(message);
+    req.xray = { trace_id: traceID, parent_id: requestID };
+    req.xray.addAnnotation = addAnnotationFunction(message);
+    req.xray.addMetadata = addMetadataFunction(message);
+    req.xray.setUser = setUserFunction(message);
 
     res.on("finish", function () {
       const endMessage: Message = {
@@ -55,8 +62,6 @@ function expressXRayMiddleware(config: MiddlewareConfig = defaultConfig) {
       daemon.sendData(endMessage);
     });
 
-    daemon.sendData(message);
-    req.xray = { trace_id: traceID, parent_id: requestID };
     next();
   };
 }
