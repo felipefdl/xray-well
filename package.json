@@ -1,7 +1,7 @@
 {
   "name": "xray-well",
   "version": "0.1.0",
-  "description": "XRay Well is a Unofficial AWS X-Ray SDK",
+  "description": "AWS X-Ray Well - An Unofficial SDK for Node.js",
   "main": "./out/index.js",
   "types": "./out/index.d.ts",
   "author": "Felipe Lima <felipe@ferreiradelima.com>",
