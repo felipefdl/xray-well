@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/felipefdl/xray-well?style=flat-square)
 ![node-current](https://img.shields.io/node/v/xray-well?style=flat-square)
 ![npm](https://img.shields.io/npm/dm/xray-well?style=flat-square)
-![npm](https://img.shields.io/npm/v/xray-well?style=flat-square)
+![npm](https://img.shields.io/npm/v/xray-well?color=green&style=flat-square)
 
 [Documentation](https://felipefdl.github.io/xray-well/)
 
