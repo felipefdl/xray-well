@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const packageJSON = require("../package.json");
 const ms = require("ms");
+const os = require("os");
 const client = dgram.createSocket("udp4");
 let softwarePackageJson: { version: string; name: string } = null;
 
@@ -28,8 +29,9 @@ const awsField: Metadata = {
   },
   system: {
     nodejs: process.version,
-    platform: process.platform,
+    platform: `${process.platform} - ${os.arch()}`,
     pid: process.pid,
+    hostname: os.hostname(),
   },
 };
 

@@ -19,6 +19,7 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
         client_ip: ctx.ip,
         url: ctx.path,
         method: ctx.method,
+        user_agent: ctx.header["user-agent"],
         x_forwarded_for: ctx.header["x-forwarded-for"],
       },
     };

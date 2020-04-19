@@ -19,6 +19,7 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
         client_ip: req.ip,
         url: req.path,
         method: req.method,
+        user_agent: req.get("user-agent"),
         x_forwarded_for: req.get("x-forwarded-for"),
       },
     };
