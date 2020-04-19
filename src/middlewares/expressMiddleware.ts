@@ -16,7 +16,7 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
 
     segment.http = {
       request: {
-        client_ip: req.ip,
+        client_ip: req.connection.remoteAddress,
         url: req.path,
         method: req.method,
         user_agent: parserUserAgent(req.get("user-agent")),

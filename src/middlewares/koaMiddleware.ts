@@ -16,7 +16,7 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
 
     segment.http = {
       request: {
-        client_ip: ctx.ip,
+        client_ip: ctx.req.connection.remoteAddress,
         url: ctx.path,
         method: ctx.method,
         user_agent: parserUserAgent(ctx.header["user-agent"]),
