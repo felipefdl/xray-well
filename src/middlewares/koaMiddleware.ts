@@ -7,10 +7,20 @@ const defaultConfig: MiddlewareConfig = {
   throttleSeconds: 10,
   ignoreStatusCodeError: [],
   ignoreStatusCodeFault: [],
+  ignoreMethods: [],
+  ignorePaths: [],
 };
 
 function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
   const config = { ...defaultConfig, ...middlewareConfig };
+
+  const allowSend = (path: string, method: string) => {
+    if (config.ignoreMethods.includes(method) || config.ignorePaths.includes(path)) {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   return async (ctx: any, next: () => Promise<void>) => {
     const segment = createSegment(config.name);
@@ -25,7 +35,9 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
       },
     };
 
-    submitSegmentPart(segment);
+    if (allowSend(ctx.path, ctx.method)) {
+      submitSegmentPart(segment);
+    }
 
     ctx.xray = {};
     ctx.xray.requestSegment = segment;
@@ -58,7 +70,9 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
       endSegment.throttle = true;
     }
 
-    submitSegment(endSegment);
+    if (allowSend(ctx.path, ctx.method)) {
+      submitSegmentPart(segment);
+    }
   };
 }
 

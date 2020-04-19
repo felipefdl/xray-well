@@ -4,7 +4,7 @@ const app = new Koa();
 
 xrayWell.activeUptime();
 
-app.use(xrayWell.middleware.koa({ name: "koa-test" }));
+app.use(xrayWell.middleware.koa({ name: "koa-test", ignoreMethods: ["OPTIONS"], ignorePaths: ["/ignore"] }));
 
 app.use((ctx) => {
   ctx.xray.setUser("user@email.com");

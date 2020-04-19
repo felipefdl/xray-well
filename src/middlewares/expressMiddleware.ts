@@ -7,10 +7,20 @@ const defaultConfig: MiddlewareConfig = {
   throttleSeconds: 10,
   ignoreStatusCodeError: [],
   ignoreStatusCodeFault: [],
+  ignoreMethods: [],
+  ignorePaths: [],
 };
 
 function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
   const config = { ...defaultConfig, ...middlewareConfig };
+
+  const allowSend = (path: string, method: string) => {
+    if (config.ignoreMethods.includes(method) || config.ignorePaths.includes(path)) {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   return (req: any, res: any, next: () => void) => {
     const segment = createSegment(config.name);
@@ -25,7 +35,9 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
       },
     };
 
-    submitSegmentPart(segment);
+    if (allowSend(req.path, req.method)) {
+      submitSegmentPart(segment);
+    }
 
     req.xray = {};
     req.xray.requestSegment = segment;
@@ -57,7 +69,9 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
         endSegment.throttle = true;
       }
 
-      submitSegment(endSegment);
+      if (allowSend(req.path, req.method)) {
+        submitSegment(endSegment);
+      }
     });
 
     next();

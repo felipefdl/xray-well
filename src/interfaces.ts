@@ -112,8 +112,12 @@ interface MiddlewareConfig {
   name: string;
   /** Seconds to set segment as trottle. */
   throttleSeconds: number;
-  /** Array of Status Code to ignore. from 400 to 499. */
+  /** Array of Status Code to not set as error. from 400 to 499. */
   ignoreStatusCodeError: number[];
-  /** Array of Status Code to ignore. from 500 to 599. */
+  /** Array of Status Code to not set as fault. from 500 to 599. */
   ignoreStatusCodeFault: number[];
+  /** Array of methods to not send to aws. e.g. ["OPTIONS"]  */
+  ignoreMethods: string[];
+  /** Array of paths to not send to aws. e.g. ["/healhcheck"] */
+  ignorePaths: string[];
 }
