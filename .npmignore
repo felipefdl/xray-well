@@ -2,6 +2,7 @@ nodemon.json
 examples/
 __tests__/
 docs/
+.github/
 .editorconfig
 .eslintignore
 .prettierrc
