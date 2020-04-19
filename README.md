@@ -1,6 +1,14 @@
 # AWS X-Ray Well - An Unofficial SDK for Node.js
 > Simple way to use AWS X-Ray. This is a jerry-rig free X-Ray SDK.
 
+![X-Ray Well Tests](https://github.com/felipefdl/xray-well/workflows/X-Ray%20Well%20Tests/badge.svg?branch=master)
+![GitHub](https://img.shields.io/github/license/felipefdl/xray-well?style=flat-square)
+![node-current](https://img.shields.io/node/v/xray-well?style=flat-square)
+![npm](https://img.shields.io/npm/dm/xray-well?style=flat-square)
+![npm](https://img.shields.io/npm/v/xray-well?style=flat-square)
+
+[Documentation](https://felipefdl.github.io/xray-well/)
+
 ## Why?
 
 The Official AWS SDK X-Ray wraps the native node modules to try to make it like magic, but it's a bad idea when trying to use it in complex systems. I tried to use the official SDK for more than 5 times in the past and it always not work to me, sometimes the problem is because I use it in a framework not supported as Koa, some times even on express (supported framework by AWS SDK) it not work well.
