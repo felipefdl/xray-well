@@ -63,7 +63,11 @@ interface SQL {
  * Object follows [AWS Documention]{@link https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields}
  */
 interface Segment {
-  /** A 64-bit identifier for the subsegment, unique among segments in the same trace, in 16 hexadecimal digits. */
+  /** The logical name of the service that handled the request, up to 200 characters.
+   * For example, your application's name or domain name.
+   * Names can contain Unicode letters, numbers, and whitespace,
+   * and the following symbols: _, ., :, /, %, &, #, =, +, \, -, @
+   */
   name: string;
   /** A 64-bit identifier for the segment, unique among segments in the same trace, in 16 hexadecimal digits. */
   id: string;
