@@ -1,3 +1,8 @@
+/**
+ * All Interfaces of XRay Well
+ * @packageDocumentation
+ */
+
 interface Request {
   /** The request method. For example, GET. */
   method: string;
@@ -52,6 +57,11 @@ interface SQL {
   sanitized_query?: string;
 }
 
+/**
+ * Segment Document.
+ *
+ * Object follows [AWS Documention]{@link https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields}
+ */
 interface Segment {
   /** A 64-bit identifier for the subsegment, unique among segments in the same trace, in 16 hexadecimal digits. */
   name: string;

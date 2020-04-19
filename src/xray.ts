@@ -1,3 +1,8 @@
+/**
+ * XRay Generators and Communication
+ * @packageDocumentation
+ */
+
 import dgram from "dgram";
 import crypto from "crypto";
 import fs from "fs";
@@ -45,10 +50,18 @@ if (softwarePackageJson) {
   };
 }
 
+/**
+ * Handle message before send to XRay Daemon.
+ * @internal
+ */
 function _handleMessage(segment: DaemonSegment): Buffer {
   return Buffer.from(`${HEADER}\n${JSON.stringify(segment)}`);
 }
 
+/**
+ * Prepare segment and send segment to XRay Daemon.
+ * @param segment Segment
+ */
 function sendData(segment: Segment): void {
   const daemonMessage = { name: _config.name, ...segment, aws: awsField } as DaemonSegment;
 
@@ -63,23 +76,48 @@ function sendData(segment: Segment): void {
   });
 }
 
+/**
+ * Generate time in epoch (xray service format).
+ *
+ * [Segment Specification]{@link https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields}
+ * @param date Date Object
+ */
 function generateTime(date: Date = new Date()) {
   return date.getTime() / 1000;
 }
 
+/**
+ * Generate unique ID for segments.
+ *
+ * [Segment Specification]{@link https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields}
+ */
 function generateID() {
   return crypto.randomBytes(8).toString("hex");
 }
 
+/**
+ * Generate TraceID in XRay service format.
+ *
+ * [Segment Specification]{@link https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields}
+ */
 function generateTraceID() {
   return `1-${Math.round(new Date().getTime() / 1000).toString(16)}-${crypto.randomBytes(12).toString("hex")}`;
 }
 
+/**
+ * Set XRayWell global configuration.
+ * @param config Config
+ */
 function setConfig(config: Config) {
   _config = { ..._config, ...config };
 }
 
 let uptime;
+/**
+ * Collect and send process uptime in evert segment.
+ * @param active boolean
+ * @param secondsUpdate interval to read uptime in seconds
+ */
 function activeUptime(active: boolean = true, secondsUpdate: number = 30) {
   clearInterval(uptime);
   delete awsField.system.uptime;

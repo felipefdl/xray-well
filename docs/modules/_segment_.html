@@ -62,6 +62,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Segment functions</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -90,19 +97,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/3f114e6/src/segment.ts#L4">segment.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/b7f2114/src/segment.ts#L15">segment.ts:15</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a Segment Document.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>segmentName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Segment name</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> traceID: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>TraceID (use only on nestedSegments)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parentSegmentID: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Parent Segment ID (use only on nestedSegments)</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.segment.html" class="tsd-signature-type">Segment</a></h4>
@@ -119,16 +140,29 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/3f114e6/src/segment.ts#L21">segment.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/b7f2114/src/segment.ts#L40">segment.ts:40</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Fork a segment to a new one for nestedSegments.</p>
+								</div>
+								<p>Another way to do that is using createSegment with traceID and parentID,
+								this function is a shortcut.</p>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>segmentName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Segment name</p>
+									</div>
 								</li>
 								<li>
 									<h5>segment: <a href="../interfaces/_interfaces_.segment.html" class="tsd-signature-type">Segment</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Segment</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.segment.html" class="tsd-signature-type">Segment</a></h4>
@@ -145,13 +179,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/3f114e6/src/segment.ts#L30">segment.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/b7f2114/src/segment.ts#L57">segment.ts:57</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Send to XRay Daemon Segments finalized, not in progress anymore.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>segment: <a href="../interfaces/_interfaces_.segment.html" class="tsd-signature-type">Segment</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Segment</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -168,13 +210,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/3f114e6/src/segment.ts#L25">segment.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/felipefdl/xray-well/blob/b7f2114/src/segment.ts#L48">segment.ts:48</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Send to XRay Daemon Segments in progress yet.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>segment: <a href="../interfaces/_interfaces_.segment.html" class="tsd-signature-type">Segment</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Segment</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
