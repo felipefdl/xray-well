@@ -1,6 +1,7 @@
 nodemon.json
 examples/
 __tests__/
+docs/
 .editorconfig
 .eslintignore
 .prettierrc
@@ -9,3 +10,4 @@ __tests__/
 *.local.*
 .DS_Store
 jest.config.js
+typedoc.json

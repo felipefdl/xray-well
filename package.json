@@ -19,6 +19,7 @@
   ],
   "repository": "felipefdl/xray-well",
   "scripts": {
+    "docs": "typedoc",
     "prepublishOnly": "jest",
     "prepare": "tsc",
     "build": "tsc",
@@ -35,6 +36,7 @@
     "jest": "25.3.0",
     "prettier": "2.0.4",
     "ts-jest": "25.4.0",
+    "typedoc": "0.17.4",
     "typescript": "3.8.3"
   },
   "dependencies": {
