@@ -53,6 +53,7 @@ if (softwarePackageJson) {
 /**
  * Handle message before send to XRay Daemon.
  * @internal
+ * @hidden
  */
 function _handleMessage(segment: DaemonSegment): Buffer {
   return Buffer.from(`${HEADER}\n${JSON.stringify(segment)}`);
