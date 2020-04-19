@@ -66,12 +66,12 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
       endSegment.fault = true;
     }
 
-    if (endSegment.end_time - segment.start_time > config.throttleSeconds) {
+    if (Date.now() / 1000 - segment.start_time > config.throttleSeconds) {
       endSegment.throttle = true;
     }
 
     if (allowSend(ctx.path, ctx.method)) {
-      submitSegmentPart(segment);
+      submitSegment(endSegment);
     }
   };
 }

@@ -65,7 +65,7 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
         endSegment.fault = true;
       }
 
-      if (endSegment.end_time - segment.start_time > config.throttleSeconds) {
+      if (Date.now() / 1000 - segment.start_time > config.throttleSeconds) {
         endSegment.throttle = true;
       }
 

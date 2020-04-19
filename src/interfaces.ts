@@ -109,15 +109,15 @@ interface Config {
 
 interface MiddlewareConfig {
   /** The logical name of the service that handled the request. */
-  name: string;
+  name?: string;
   /** Seconds to set segment as trottle. */
-  throttleSeconds: number;
+  throttleSeconds?: number;
   /** Array of Status Code to not set as error. from 400 to 499. */
-  ignoreStatusCodeError: number[];
+  ignoreStatusCodeError?: number[];
   /** Array of Status Code to not set as fault. from 500 to 599. */
-  ignoreStatusCodeFault: number[];
+  ignoreStatusCodeFault?: number[];
   /** Array of methods to not send to aws. e.g. ["OPTIONS"]  */
-  ignoreMethods: string[];
+  ignoreMethods?: string[];
   /** Array of paths to not send to aws. e.g. ["/healhcheck"] */
-  ignorePaths: string[];
+  ignorePaths?: string[];
 }

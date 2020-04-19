@@ -120,11 +120,9 @@ async function init() {
 ```
 
 ## TO-DO
-- [x] Create Koa and Express Framework;
 - [ ] Create an easy way to add SQL Segments;
 - [ ] Implement exceptions segments;
-- [ ] Create better documentation;
-- [ ] Improve unit tests;
+- [ ] Complete documentation;
 
 ## License
 
