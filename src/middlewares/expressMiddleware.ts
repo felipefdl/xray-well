@@ -1,4 +1,4 @@
-import { addAnnotationFunction, addMetadataFunction, setUserFunction } from "./_middlewareHelpers";
+import { addAnnotationFunction, addMetadataFunction, setUserFunction, parserUserAgent } from "./_middlewareHelpers";
 import { createSegment, submitSegmentPart, submitSegment } from "../segment";
 
 const defaultConfig: MiddlewareConfig = {
@@ -19,7 +19,7 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
         client_ip: req.ip,
         url: req.path,
         method: req.method,
-        user_agent: req.get("user-agent"),
+        user_agent: parserUserAgent(req.get("user-agent")),
         x_forwarded_for: req.get("x-forwarded-for"),
       },
     };

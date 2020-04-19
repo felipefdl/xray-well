@@ -1,4 +1,4 @@
-import { addAnnotationFunction, addMetadataFunction, setUserFunction } from "./_middlewareHelpers";
+import { addAnnotationFunction, addMetadataFunction, setUserFunction, parserUserAgent } from "./_middlewareHelpers";
 import { createSegment, submitSegmentPart, submitSegment } from "../segment";
 
 const defaultConfig: MiddlewareConfig = {
@@ -19,7 +19,7 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
         client_ip: ctx.ip,
         url: ctx.path,
         method: ctx.method,
-        user_agent: ctx.header["user-agent"],
+        user_agent: parserUserAgent(ctx.header["user-agent"]),
         x_forwarded_for: ctx.header["x-forwarded-for"],
       },
     };

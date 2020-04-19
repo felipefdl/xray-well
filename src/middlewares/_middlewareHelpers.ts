@@ -1,3 +1,5 @@
+import { detect } from "detect-browser";
+
 function addAnnotationFunction(segment: Segment) {
   return (key: string, value: string | number | boolean) => {
     segment.annotations = {
@@ -25,4 +27,13 @@ function setUserFunction(segment: Segment) {
   };
 }
 
-export { addAnnotationFunction, addMetadataFunction, setUserFunction };
+function parserUserAgent(userAgent: string) {
+  const browser = detect(String(userAgent));
+  if (browser && browser.name) {
+    return `${browser.name} v${browser.version} [${browser.os || "Unknown"}]`;
+  } else {
+    return userAgent || "Unknown";
+  }
+}
+
+export { addAnnotationFunction, addMetadataFunction, setUserFunction, parserUserAgent };
