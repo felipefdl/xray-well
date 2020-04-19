@@ -8,7 +8,7 @@ interface Request {
   /** The full URL of the request, compiled from the protocol, hostname, and path of the request. */
   url: string;
   /** Indicating that the client_ip was read from an X-Forwarded-For header and is not reliable as it could have been forged. */
-  x_forwarded_for?: string;
+  x_forwarded_for?: boolean;
 }
 
 interface Response {

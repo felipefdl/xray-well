@@ -16,11 +16,11 @@ function koaXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfig) {
 
     segment.http = {
       request: {
-        client_ip: ctx.req.connection.remoteAddress,
+        client_ip: ctx.header["x-forwarded-for"] || ctx.ip,
         url: ctx.path,
         method: ctx.method,
         user_agent: parserUserAgent(ctx.header["user-agent"]),
-        x_forwarded_for: ctx.header["x-forwarded-for"],
+        x_forwarded_for: !!ctx.header["x-forwarded-for"],
       },
     };
 

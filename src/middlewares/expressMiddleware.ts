@@ -16,11 +16,11 @@ function expressXRayMiddleware(middlewareConfig: MiddlewareConfig = defaultConfi
 
     segment.http = {
       request: {
-        client_ip: req.connection.remoteAddress,
+        client_ip: req.get("x-forwarded-for") || req.ip,
         url: req.path,
         method: req.method,
         user_agent: parserUserAgent(req.get("user-agent")),
-        x_forwarded_for: req.get("x-forwarded-for"),
+        x_forwarded_for: !!req.get("x-forwarded-for"),
       },
     };
 
