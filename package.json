@@ -1,6 +1,6 @@
 {
   "name": "xray-well",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "AWS X-Ray Well - An Unofficial SDK for Node.js",
   "main": "./out/index.js",
   "types": "./out/index.d.ts",
