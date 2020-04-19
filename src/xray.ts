@@ -1,10 +1,13 @@
-const dgram = require("dgram");
-const crypto = require("crypto");
-const fs = require("fs");
+import dgram from "dgram";
+import crypto from "crypto";
+import fs from "fs";
+import ms from "ms";
+import os from "os";
+import "./interfaces";
+
 const packageJSON = require("../package.json");
-const ms = require("ms");
-const os = require("os");
 const client = dgram.createSocket("udp4");
+
 let softwarePackageJson: { version: string; name: string } = null;
 
 try {

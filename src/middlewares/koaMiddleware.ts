@@ -1,5 +1,6 @@
 import { addAnnotationFunction, addMetadataFunction, setUserFunction, parserUserAgent } from "./_middlewareHelpers";
 import { createSegment, submitSegmentPart, submitSegment } from "../segment";
+import "../interfaces";
 
 const defaultConfig: MiddlewareConfig = {
   name: "koa-middleware",

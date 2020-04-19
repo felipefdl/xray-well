@@ -1,3 +1,4 @@
+import "./interfaces";
 import { generateID, generateTraceID, generateTime, sendData } from "./xray";
 
 function createSegment(segmentName: string, traceID?: string, parentSegmentID?: string) {

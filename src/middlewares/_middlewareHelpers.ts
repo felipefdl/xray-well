@@ -1,4 +1,5 @@
 import { detect } from "detect-browser";
+import "../interfaces";
 
 function addAnnotationFunction(segment: Segment) {
   return (key: string, value: string | number | boolean) => {
