@@ -19,7 +19,7 @@
   ],
   "repository": "felipefdl/xray-well",
   "scripts": {
-    "docs": "typedoc",
+    "docs": "typedoc && touch ./docs/.nojekyll",
     "prepublishOnly": "jest",
     "prepare": "tsc",
     "build": "tsc",
