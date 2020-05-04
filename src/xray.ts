@@ -28,6 +28,7 @@ let _config: Config = {
   server: "localhost",
   port: 2000,
   debug: false,
+  enabled: true,
 };
 
 const awsField: Metadata = {
@@ -64,6 +65,8 @@ function _handleMessage(segment: DaemonSegment): Buffer {
  * @param segment Segment
  */
 function sendData(segment: Segment): void {
+  if (_config.enabled === false) return;
+
   const daemonMessage = { name: _config.name, ...segment, aws: awsField } as DaemonSegment;
 
   client.send(_handleMessage(daemonMessage), _config.port, _config.server, (err) => {

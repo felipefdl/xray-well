@@ -119,6 +119,8 @@ interface Config {
   port: number;
   /** Active X-Ray Well Debug Log */
   debug?: boolean;
+  /** Enable Service; default true */
+  enabled?: boolean;
 }
 
 interface MiddlewareConfig {
