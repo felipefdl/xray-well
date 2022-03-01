@@ -1,242 +1,66 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>xray-well</title>
-	<meta name="description" content="Documentation for xray-well">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">xray-well</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>xray-well</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#aws-x-ray-well---an-unofficial-sdk-for-nodejs" id="aws-x-ray-well---an-unofficial-sdk-for-nodejs" style="color: inherit; text-decoration: none;">
-					<h1>AWS X-Ray Well - An Unofficial SDK for Node.js</h1>
-				</a>
-				<blockquote>
-					<p>Simple way to use AWS X-Ray. This is a jerry-rig free X-Ray SDK.</p>
-				</blockquote>
-				<p><img src="https://github.com/felipefdl/xray-well/workflows/X-Ray%20Well%20Tests/badge.svg?branch=master" alt="X-Ray Well Tests">
-					<img src="https://img.shields.io/github/license/felipefdl/xray-well?style=flat-square" alt="GitHub">
-					<img src="https://img.shields.io/node/v/xray-well?style=flat-square" alt="node-current">
-					<img src="https://img.shields.io/npm/dm/xray-well?style=flat-square" alt="npm">
-				<img src="https://img.shields.io/npm/v/xray-well?color=green&style=flat-square" alt="npm"></p>
-				<p><a href="https://felipefdl.github.io/xray-well/">Documentation</a></p>
-				<a href="#why" id="why" style="color: inherit; text-decoration: none;">
-					<h2>Why?</h2>
-				</a>
-				<p>The Official AWS SDK X-Ray wraps the native node modules to try to make it like magic, but it&#39;s a bad idea when trying to use it in complex systems. I tried to use the official SDK for more than 5 times in the past and it always not work to me, sometimes the problem is because I use it in a framework not supported as Koa, some times even on express (supported framework by AWS SDK) it not work well.</p>
-				<p>So, I created this lib well done, this lib will never auto attach on Node.js native modules, it does not work like magic, but you can do your magic using it.</p>
-				<a href="#how-to-install-it" id="how-to-install-it" style="color: inherit; text-decoration: none;">
-					<h2>How to install it?</h2>
-				</a>
-				<pre><code class="language-bash">$ npm install xray-well --save</code></pre>
-				<blockquote>
-					<p>Set the configuration on main file of your application. You still need the AWS X-Ray Daemon</p>
-				</blockquote>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> xrayWell = <span class="hljs-built_in">require</span>(<span class="hljs-string">"xray-well"</span>);
-xrayWell.setConfig({ <span class="hljs-attr">server</span>: <span class="hljs-string">"localhost"</span>, <span class="hljs-attr">port</span>: <span class="hljs-number">2000</span> });</code></pre>
-				<a href="#how-to-use-on-express-framework" id="how-to-use-on-express-framework" style="color: inherit; text-decoration: none;">
-					<h2>How to use on Express Framework?</h2>
-				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> xrayWell = <span class="hljs-built_in">require</span>(<span class="hljs-string">"xray-well"</span>);
-<span class="hljs-keyword">const</span> express  = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);
-<span class="hljs-keyword">const</span> app      = express();
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>xray-well</title><meta name="description" content="Documentation for xray-well"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">xray-well</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>xray-well</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#aws-x-ray-well---an-unofficial-sdk-for-nodejs" id="aws-x-ray-well---an-unofficial-sdk-for-nodejs" style="color: inherit; text-decoration: none;">
+  <h1>AWS X-Ray Well - An Unofficial SDK for Node.js</h1>
+</a>
+<blockquote>
+<p>Simple way to use AWS X-Ray. This is a jerry-rig free X-Ray SDK.</p>
+</blockquote>
+<p><img src="https://github.com/felipefdl/xray-well/workflows/X-Ray%20Well%20Tests/badge.svg?branch=master" alt="X-Ray Well Tests">
+<img src="https://img.shields.io/github/license/felipefdl/xray-well?style=flat-square" alt="GitHub">
+<img src="https://img.shields.io/node/v/xray-well?style=flat-square" alt="node-current">
+<img src="https://img.shields.io/npm/dm/xray-well?style=flat-square" alt="npm">
+<img src="https://img.shields.io/npm/v/xray-well?color=green&style=flat-square" alt="npm"></p>
+<p><a href="https://felipefdl.github.io/xray-well/">Documentation</a></p>
 
-app.use(xrayWell.middleware.express({ <span class="hljs-attr">name</span>: <span class="hljs-string">"my.awesome.domain.com"</span> })); <span class="hljs-comment">// Add it before any another middleware</span>
+<a href="#why" id="why" style="color: inherit; text-decoration: none;">
+  <h2>Why?</h2>
+</a>
+<p>The Official AWS SDK X-Ray wraps the native node modules to try to make it like magic, but it&#39;s a bad idea when trying to use it in complex systems. I tried to use the official SDK for more than 5 times in the past and it always not work to me, sometimes the problem is because I use it in a framework not supported as Koa, some times even on express (supported framework by AWS SDK) it not work well.</p>
+<p>So, I created this lib well done, this lib will never auto attach on Node.js native modules, it does not work like magic, but you can do your magic using it.</p>
 
-app.get(<span class="hljs-string">"/"</span>, (req, res) =&gt; {
-  req.xray.setUser(<span class="hljs-string">"user@email.com"</span>);
-  req.xray.addAnnotation(<span class="hljs-string">"user_id"</span>, <span class="hljs-string">"44232123"</span>);
-  req.xray.addAnnotation(<span class="hljs-string">"company"</span>, <span class="hljs-string">"acme"</span>);
-  req.xray.addMetadata(<span class="hljs-string">"myNamespace"</span>, <span class="hljs-string">"any"</span>, <span class="hljs-string">"value"</span>);
-  req.xray.addMetadata(<span class="hljs-string">"myNamespace"</span>, <span class="hljs-string">"another"</span>, <span class="hljs-literal">true</span>);
-  req.xray.addMetadata(<span class="hljs-string">"mySecondsNamespace"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>);
-
-  res.send(<span class="hljs-string">"Hi AWS, I'm not using your SDK! =)"</span>);
-});
-
-app.listen(<span class="hljs-number">3030</span>, () =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Listening at http://localhost:3030"</span>));
+<a href="#how-to-install-it" id="how-to-install-it" style="color: inherit; text-decoration: none;">
+  <h2>How to install it?</h2>
+</a>
+<pre><code class="language-bash"><span class="hl-0">$ npm install xray-well --save</span>
 </code></pre>
-				<a href="#how-to-use-on-koa-framework" id="how-to-use-on-koa-framework" style="color: inherit; text-decoration: none;">
-					<h2>How to use on Koa Framework?</h2>
-				</a>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> xrayWell = <span class="hljs-built_in">require</span>(<span class="hljs-string">"xray-well"</span>);
-<span class="hljs-keyword">const</span> Koa      = <span class="hljs-built_in">require</span>(<span class="hljs-string">"koa"</span>);
-<span class="hljs-keyword">const</span> app      = <span class="hljs-keyword">new</span> Koa();
-
-app.use(xrayWell.middleware.koa({ <span class="hljs-attr">name</span>: <span class="hljs-string">"my.awesome.domain.com"</span> })); <span class="hljs-comment">// Add it before any another middleware</span>
-
-app.use(<span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-  ctx.xray.setUser(<span class="hljs-string">"user@email.com"</span>);
-  ctx.xray.addAnnotation(<span class="hljs-string">"user_id"</span>, <span class="hljs-string">"44232123"</span>);
-  ctx.xray.addAnnotation(<span class="hljs-string">"company"</span>, <span class="hljs-string">"acme"</span>);
-  ctx.xray.addMetadata(<span class="hljs-string">"myNamespace"</span>, <span class="hljs-string">"any"</span>, <span class="hljs-string">"value"</span>);
-  ctx.xray.addMetadata(<span class="hljs-string">"myNamespace"</span>, <span class="hljs-string">"another"</span>, <span class="hljs-literal">true</span>);
-  ctx.xray.addMetadata(<span class="hljs-string">"mySecondsNamespace"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>);
-
-  ctx.body = <span class="hljs-string">"Hi AWS, I'm not using your SDK! =)"</span>;
-});
-
-app.listen(<span class="hljs-number">3030</span>, () =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Listening at http://localhost:3030"</span>));
+<blockquote>
+<p>Set the configuration on main file of your application. You still need the AWS X-Ray Daemon</p>
+</blockquote>
+<pre><code class="language-javascript"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">xrayWell</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;xray-well&quot;</span><span class="hl-0">);</span><br/><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-3">setConfig</span><span class="hl-0">({ </span><span class="hl-5">server:</span><span class="hl-0"> </span><span class="hl-4">&quot;localhost&quot;</span><span class="hl-0">, </span><span class="hl-5">port:</span><span class="hl-0"> </span><span class="hl-6">2000</span><span class="hl-0"> });</span>
 </code></pre>
-				<a href="#how-to-use-without-any-web-framework" id="how-to-use-without-any-web-framework" style="color: inherit; text-decoration: none;">
-					<h2>How to use without any web framework</h2>
-				</a>
-				<blockquote>
-					<p>You can change any aspect of your segment any time.</p>
-				</blockquote>
-				<pre><code class="language-javascript"><span class="hljs-keyword">const</span> xrayWell = <span class="hljs-built_in">require</span>(<span class="hljs-string">"xray-well"</span>);
-<span class="hljs-keyword">const</span> sleep    = <span class="hljs-function">(<span class="hljs-params">ms</span>) =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> setTimeout(resolve, ms));
 
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-comment">// Create a main segment.</span>
-  <span class="hljs-keyword">const</span> segment = xrayWell.segment.createSegment(<span class="hljs-string">"my-own-function"</span>);
-  segment.annotations = {
-    <span class="hljs-attr">function</span>: <span class="hljs-string">"init"</span>,
-  };
+<a href="#how-to-use-on-express-framework" id="how-to-use-on-express-framework" style="color: inherit; text-decoration: none;">
+  <h2>How to use on Express Framework?</h2>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">xrayWell</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;xray-well&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">express</span><span class="hl-0">  = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;express&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">app</span><span class="hl-0">      = </span><span class="hl-3">express</span><span class="hl-0">();</span><br/><br/><span class="hl-5">app</span><span class="hl-0">.</span><span class="hl-3">use</span><span class="hl-0">(</span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">middleware</span><span class="hl-0">.</span><span class="hl-3">express</span><span class="hl-0">({ </span><span class="hl-5">name:</span><span class="hl-0"> </span><span class="hl-4">&quot;my.awesome.domain.com&quot;</span><span class="hl-0"> })); </span><span class="hl-7">// Add it before any another middleware</span><br/><br/><span class="hl-5">app</span><span class="hl-0">.</span><span class="hl-3">get</span><span class="hl-0">(</span><span class="hl-4">&quot;/&quot;</span><span class="hl-0">, (</span><span class="hl-5">req</span><span class="hl-0">, </span><span class="hl-5">res</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">req</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">setUser</span><span class="hl-0">(</span><span class="hl-4">&quot;user@email.com&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">req</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addAnnotation</span><span class="hl-0">(</span><span class="hl-4">&quot;user_id&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;44232123&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">req</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addAnnotation</span><span class="hl-0">(</span><span class="hl-4">&quot;company&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;acme&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">req</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addMetadata</span><span class="hl-0">(</span><span class="hl-4">&quot;myNamespace&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;any&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;value&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">req</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addMetadata</span><span class="hl-0">(</span><span class="hl-4">&quot;myNamespace&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;another&quot;</span><span class="hl-0">, </span><span class="hl-1">true</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">req</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addMetadata</span><span class="hl-0">(</span><span class="hl-4">&quot;mySecondsNamespace&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;foo&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;bar&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">res</span><span class="hl-0">.</span><span class="hl-3">send</span><span class="hl-0">(</span><span class="hl-4">&quot;Hi AWS, I&#39;m not using your SDK! =)&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">app</span><span class="hl-0">.</span><span class="hl-3">listen</span><span class="hl-0">(</span><span class="hl-6">3030</span><span class="hl-0">, () </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-4">&quot;Listening at http://localhost:3030&quot;</span><span class="hl-0">));</span><br/>
+</code></pre>
 
-  <span class="hljs-comment">// Submit main segment, in process yet.</span>
-  xrayWell.segment.submitSegmentPart(segment);
+<a href="#how-to-use-on-koa-framework" id="how-to-use-on-koa-framework" style="color: inherit; text-decoration: none;">
+  <h2>How to use on Koa Framework?</h2>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">xrayWell</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;xray-well&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">Koa</span><span class="hl-0">      = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;koa&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">app</span><span class="hl-0">      = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">Koa</span><span class="hl-0">();</span><br/><br/><span class="hl-5">app</span><span class="hl-0">.</span><span class="hl-3">use</span><span class="hl-0">(</span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">middleware</span><span class="hl-0">.</span><span class="hl-3">koa</span><span class="hl-0">({ </span><span class="hl-5">name:</span><span class="hl-0"> </span><span class="hl-4">&quot;my.awesome.domain.com&quot;</span><span class="hl-0"> })); </span><span class="hl-7">// Add it before any another middleware</span><br/><br/><span class="hl-5">app</span><span class="hl-0">.</span><span class="hl-3">use</span><span class="hl-0">((</span><span class="hl-5">ctx</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">setUser</span><span class="hl-0">(</span><span class="hl-4">&quot;user@email.com&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addAnnotation</span><span class="hl-0">(</span><span class="hl-4">&quot;user_id&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;44232123&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addAnnotation</span><span class="hl-0">(</span><span class="hl-4">&quot;company&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;acme&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addMetadata</span><span class="hl-0">(</span><span class="hl-4">&quot;myNamespace&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;any&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;value&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addMetadata</span><span class="hl-0">(</span><span class="hl-4">&quot;myNamespace&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;another&quot;</span><span class="hl-0">, </span><span class="hl-1">true</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">xray</span><span class="hl-0">.</span><span class="hl-3">addMetadata</span><span class="hl-0">(</span><span class="hl-4">&quot;mySecondsNamespace&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;foo&quot;</span><span class="hl-0">, </span><span class="hl-4">&quot;bar&quot;</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">ctx</span><span class="hl-0">.</span><span class="hl-5">body</span><span class="hl-0"> = </span><span class="hl-4">&quot;Hi AWS, I&#39;m not using your SDK! =)&quot;</span><span class="hl-0">;</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-5">app</span><span class="hl-0">.</span><span class="hl-3">listen</span><span class="hl-0">(</span><span class="hl-6">3030</span><span class="hl-0">, () </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-5">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-4">&quot;Listening at http://localhost:3030&quot;</span><span class="hl-0">));</span><br/>
+</code></pre>
 
-  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">1000</span>);
+<a href="#how-to-use-without-any-web-framework" id="how-to-use-without-any-web-framework" style="color: inherit; text-decoration: none;">
+  <h2>How to use without any web framework</h2>
+</a>
+<blockquote>
+<p>You can change any aspect of your segment any time.</p>
+</blockquote>
+<pre><code class="language-javascript"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">xrayWell</span><span class="hl-0"> = </span><span class="hl-3">require</span><span class="hl-0">(</span><span class="hl-4">&quot;xray-well&quot;</span><span class="hl-0">);</span><br/><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-3">sleep</span><span class="hl-0">    = (</span><span class="hl-5">ms</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-8">Promise</span><span class="hl-0">((</span><span class="hl-5">resolve</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-3">setTimeout</span><span class="hl-0">(</span><span class="hl-5">resolve</span><span class="hl-0">, </span><span class="hl-5">ms</span><span class="hl-0">));</span><br/><br/><span class="hl-1">async</span><span class="hl-0"> </span><span class="hl-1">function</span><span class="hl-0"> </span><span class="hl-3">init</span><span class="hl-0">() {</span><br/><span class="hl-0">  </span><span class="hl-7">// Create a main segment.</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">segment</span><span class="hl-0"> = </span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-3">createSegment</span><span class="hl-0">(</span><span class="hl-4">&quot;my-own-function&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-5">annotations</span><span class="hl-0"> = {</span><br/><span class="hl-0">    </span><span class="hl-5">function:</span><span class="hl-0"> </span><span class="hl-4">&quot;init&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  };</span><br/><br/><span class="hl-0">  </span><span class="hl-7">// Submit main segment, in process yet.</span><br/><span class="hl-0">  </span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-3">submitSegmentPart</span><span class="hl-0">(</span><span class="hl-5">segment</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-9">await</span><span class="hl-0"> </span><span class="hl-3">sleep</span><span class="hl-0">(</span><span class="hl-6">1000</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-7">// Create a nested segment forked from main.</span><br/><span class="hl-0">  </span><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">nestedSegment</span><span class="hl-0"> = </span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-3">forkSegment</span><span class="hl-0">(</span><span class="hl-4">&quot;nestedSegment&quot;</span><span class="hl-0">, </span><span class="hl-5">segment</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">nestedSegment</span><span class="hl-0">.</span><span class="hl-5">annotations</span><span class="hl-0"> = {</span><br/><span class="hl-0">    </span><span class="hl-5">function2:</span><span class="hl-0"> </span><span class="hl-4">&quot;doing something&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  };</span><br/><br/><span class="hl-0">  </span><span class="hl-7">// Submit my nested segment, in process yet.</span><br/><span class="hl-0">  </span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-3">submitSegmentPart</span><span class="hl-0">(</span><span class="hl-5">nestedSegment</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-9">await</span><span class="hl-0"> </span><span class="hl-3">sleep</span><span class="hl-0">(</span><span class="hl-6">1000</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-5">nestedSegment</span><span class="hl-0">.</span><span class="hl-5">annotations</span><span class="hl-0"> = {</span><br/><span class="hl-0">    </span><span class="hl-5">function2:</span><span class="hl-0"> </span><span class="hl-4">&quot;done of doing something&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  };</span><br/><br/><span class="hl-0">  </span><span class="hl-7">// Submit by nested segment already done.</span><br/><span class="hl-0">  </span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-3">submitSegment</span><span class="hl-0">(</span><span class="hl-5">nestedSegment</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-9">await</span><span class="hl-0"> </span><span class="hl-3">sleep</span><span class="hl-0">(</span><span class="hl-6">1000</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-7">// Submit my main segment to finish the flow.</span><br/><span class="hl-0">  </span><span class="hl-5">xrayWell</span><span class="hl-0">.</span><span class="hl-5">segment</span><span class="hl-0">.</span><span class="hl-3">submitSegment</span><span class="hl-0">(</span><span class="hl-5">segment</span><span class="hl-0">);</span><br/><span class="hl-0">}</span>
+</code></pre>
 
-  <span class="hljs-comment">// Create a nested segment forked from main.</span>
-  <span class="hljs-keyword">const</span> nestedSegment = xrayWell.segment.forkSegment(<span class="hljs-string">"nestedSegment"</span>, segment);
-  nestedSegment.annotations = {
-    <span class="hljs-attr">function2</span>: <span class="hljs-string">"doing something"</span>,
-  };
+<a href="#to-do" id="to-do" style="color: inherit; text-decoration: none;">
+  <h2>TO-DO</h2>
+</a>
+<ul>
+<li><input disabled="" type="checkbox"> Create an easy way to add SQL Segments;</li>
+<li><input disabled="" type="checkbox"> Implement exceptions segments;</li>
+<li><input disabled="" type="checkbox"> Complete documentation;</li>
+</ul>
 
-  <span class="hljs-comment">// Submit my nested segment, in process yet.</span>
-  xrayWell.segment.submitSegmentPart(nestedSegment);
-
-  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">1000</span>);
-
-  nestedSegment.annotations = {
-    <span class="hljs-attr">function2</span>: <span class="hljs-string">"done of doing something"</span>,
-  };
-
-  <span class="hljs-comment">// Submit by nested segment already done.</span>
-  xrayWell.segment.submitSegment(nestedSegment);
-
-  <span class="hljs-keyword">await</span> sleep(<span class="hljs-number">1000</span>);
-
-  <span class="hljs-comment">// Submit my main segment to finish the flow.</span>
-  xrayWell.segment.submitSegment(segment);
-}</code></pre>
-				<a href="#to-do" id="to-do" style="color: inherit; text-decoration: none;">
-					<h2>TO-DO</h2>
-				</a>
-				<ul>
-					<li><input disabled="" type="checkbox"> Create an easy way to add SQL Segments;</li>
-					<li><input disabled="" type="checkbox"> Implement exceptions segments;</li>
-					<li><input disabled="" type="checkbox"> Complete documentation;</li>
-				</ul>
-				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-					<h2>License</h2>
-				</a>
-				<p>  <a href="LICENSE">MIT</a></p>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_interfaces_.html">&quot;interfaces&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_middlewares_expressmiddleware_.html">&quot;middlewares/express<wbr>Middleware&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_middlewares_koamiddleware_.html">&quot;middlewares/koa<wbr>Middleware&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_segment_.html">&quot;segment&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_xray_.html">&quot;xray&quot;</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer>
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
-</body>
-</html>
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>  <a href="LICENSE">MIT</a></p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="modules/_internal_.html">&lt;internal&gt;</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-variable"><a href="modules.html#daemon" class="tsd-kind-icon">daemon</a></li><li class="tsd-kind-variable"><a href="modules.html#middleware" class="tsd-kind-icon">middleware</a></li><li class="tsd-kind-variable"><a href="modules.html#segment" class="tsd-kind-icon">segment</a></li><li class="tsd-kind-function"><a href="modules.html#activeUptime" class="tsd-kind-icon">active<wbr/>Uptime</a></li><li class="tsd-kind-function"><a href="modules.html#setConfig" class="tsd-kind-icon">set<wbr/>Config</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>

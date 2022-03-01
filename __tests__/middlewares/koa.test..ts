@@ -30,7 +30,7 @@ describe("Koa Middleware", () => {
     service.close(done);
   });
 
-  test("Normal Operation", async (done) => {
+  test("Normal Operation", async () => {
     app.use(xrayWell.middleware.koa({ name: "mytest" }));
     app.use((ctx) => (ctx.body = "ok"));
 
@@ -63,10 +63,10 @@ describe("Koa Middleware", () => {
     expect(doneSegment.http.request).toStrictEqual(inprogressSegment.http.request);
     expect(doneSegment.http.response).toStrictEqual({ status: 200, content_length: "2" });
 
-    done();
+    return Promise.resolve();
   });
 
-  test("Error flag", async (done) => {
+  test("Error flag", async () => {
     app.use(xrayWell.middleware.koa({ name: "mytest" }));
     await request.get("/404");
     const xrayData = xray.sendData as jest.Mock;
@@ -77,10 +77,11 @@ describe("Koa Middleware", () => {
 
     expect(doneSegment.http.response.status).toBe(404);
     expect(doneSegment.error).toBeTruthy();
-    done();
+
+    return Promise.resolve();
   });
 
-  test("Throttle flag", async (done) => {
+  test("Throttle flag", async () => {
     app.use(xrayWell.middleware.koa({ name: "mytest", throttleSeconds: 1.9 }));
     app.use(async (ctx) => {
       await new Promise((r) => setTimeout(r, 2000));
@@ -95,10 +96,11 @@ describe("Koa Middleware", () => {
     const [, [doneSegment]] = xrayData.mock.calls;
 
     expect(doneSegment.throttle).toBeTruthy();
-    done();
+
+    return Promise.resolve();
   });
 
-  test("Fault flag", async (done) => {
+  test("Fault flag", async () => {
     app.use(xrayWell.middleware.koa({ name: "mytest" }));
     app.use((ctx) => {
       ctx.status = 502;
@@ -113,6 +115,7 @@ describe("Koa Middleware", () => {
     const [, [doneSegment]] = xrayData.mock.calls;
 
     expect(doneSegment.fault).toBeTruthy();
-    done();
+
+    return Promise.resolve();
   });
 });

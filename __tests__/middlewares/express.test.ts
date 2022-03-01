@@ -31,7 +31,7 @@ describe("Express Middleware", () => {
     service.close(done);
   });
 
-  test("Normal Operation", async (done) => {
+  test("Normal Operation", async () => {
     app.use(xrayWell.middleware.express({ name: "mytest" }));
     app.get("/success", (req, res) => res.send("ok"));
 
@@ -64,10 +64,11 @@ describe("Express Middleware", () => {
     expect(doneSegment.http.request).toStrictEqual(inprogressSegment.http.request);
     expect(doneSegment.http.response).toStrictEqual({ status: 200, content_length: "2" });
 
-    done();
+    return Promise.resolve();
   });
 
-  test("Error flag", async (done) => {
+  test("Error flag", async () => {
+    jest.setTimeout(10000);
     app.use(xrayWell.middleware.express({ name: "mytest" }));
 
     await request.get("/404");
@@ -79,10 +80,11 @@ describe("Express Middleware", () => {
 
     expect(doneSegment.http.response.status).toBe(404);
     expect(doneSegment.error).toBeTruthy();
-    done();
+
+    return Promise.resolve();
   });
 
-  test("Throttle flag", async (done) => {
+  test("Throttle flag", async () => {
     app.use(xrayWell.middleware.express({ name: "mytest", throttleSeconds: 1.9 }));
     app.get("/slow", (req, res) => setTimeout(() => res.send("ok"), 2000));
 
@@ -94,10 +96,11 @@ describe("Express Middleware", () => {
     const [, [doneSegment]] = xrayData.mock.calls;
 
     expect(doneSegment.throttle).toBeTruthy();
-    done();
+
+    return Promise.resolve();
   });
 
-  test("Fault flag", async (done) => {
+  test("Fault flag", async () => {
     app.use(xrayWell.middleware.express({ name: "mytest" }));
     app.get("/serverError", (req, res) => res.status(502).send("error"));
 
@@ -109,6 +112,7 @@ describe("Express Middleware", () => {
     const [, [doneSegment]] = xrayData.mock.calls;
 
     expect(doneSegment.fault).toBeTruthy();
-    done();
+
+    return Promise.resolve();
   });
 });

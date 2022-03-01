@@ -1,9 +1,12 @@
 {
-  "mode": "modules",
+  "entryPoints": "./src/index.ts",
+  "entryPointStrategy": "resolve",
   "out": "docs",
-  "excludeNotExported": true,
-  "excludeExternals": true,
-  "exclude": "**/_*.ts",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "githubPages": true,
   "hideGenerator": true,
-  "inputFiles": ["./src/index.ts"]
+  "cleanOutputDir": true,
+  "internalNamespace": "<internal>"
 }
